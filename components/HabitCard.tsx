@@ -1,38 +1,36 @@
-"use client"; 
+// components/HabitCard.tsx
+import React from 'react';
 
-interface Habit {
-  name: string;
-  daysCompleted: number;
-}
+type Props = {
+  habit: {
+    name: string;
+    daysCompleted: number;
+  };
+};
 
-interface HabitCardProps {
-  habit: Habit;
-}
-
-export const HabitCard = ({ habit }: HabitCardProps) => {
-  const percentage = Math.min((habit.daysCompleted / 66) * 100, 100);
-  
-  const progressColor = 
-    percentage < 33 ? 'bg-red-500' :
-    percentage < 66 ? 'bg-yellow-500' :
-    'bg-green-500';
+const HabitCard = ({ habit }: Props) => {
+  const porcentaje = Math.min((habit.daysCompleted / 66) * 100, 100);
+  const color =
+    porcentaje < 33
+      ? 'bg-red-500'
+      : porcentaje < 66
+      ? 'bg-yellow-500'
+      : 'bg-green-500';
 
   return (
-    <article className="border p-4 rounded shadow">
+    <div className="border p-4 rounded shadow">
       <h2 className="text-lg font-semibold mb-2">{habit.name}</h2>
       <div className="w-full bg-gray-200 rounded h-4">
         <div
-          className={`${progressColor} h-4 rounded transition-all duration-300`}
-          style={{ width: `${percentage}%` }}
-          role="progressbar"
-          aria-valuenow={percentage}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        />
+          className={`${color} h-4 rounded`}
+          style={{ width: `${porcentaje}%` }}
+        ></div>
       </div>
       <p className="text-sm mt-2">
-        {habit.daysCompleted} de 66 días completados ({percentage.toFixed(0)}%)
+        {habit.daysCompleted} de 66 días completados
       </p>
-    </article>
+    </div>
   );
 };
+
+export default HabitCard;
