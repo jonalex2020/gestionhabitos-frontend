@@ -1,30 +1,45 @@
 'use client';
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchHabitsThunk } from "@/feature/habit/habitSlice";
-import { AppDispatch, RootState } from "@/redux/store";
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function HomePage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { habits, status } = useSelector((state: RootState) => state.habit);
-
-  useEffect(() => {
-    dispatch(fetchHabitsThunk());
-  }, [dispatch]);
+  const router = useRouter();
 
   return (
-    <main className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Hábitos</h1>
-      {status === 'loading' && <p>Cargando...</p>}
-      {status === 'failed' && <p>Error al cargar hábitos</p>}
-      {status === 'succeeded' && (
-        <ul className="space-y-2">
-          {habits.map(h => (
-            <li key={h._id} className="p-2 border rounded">{h.name}</li>
-          ))}
-        </ul>
-      )}
-    </main>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex flex-col items-center justify-center px-4 text-center">
+      <div className="mb-6">
+        <Image
+          src="https://informatica.galileo.edu/img/galileo-sin-slogan-optimizada.png"
+          alt="Universidad Galileo"
+          width={300}
+          height={100}
+          className="rounded"
+        />
+      </div>
+
+      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-3">
+        Bienvenido al Sistema de Gestión de Hábitos
+      </h1>
+
+      <p className="text-gray-700 max-w-xl mb-8">
+        Organiza tu vida, mejora tus hábitos y alcanza tus metas con esta plataforma desarrollada como parte del proyecto final de Programación Avanzada.
+      </p>
+
+      <div className="flex gap-4">
+        <button
+          onClick={() => router.push('/login')}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow"
+        >
+          Iniciar Sesión
+        </button>
+        <button
+          onClick={() => router.push('/register')}
+          className="bg-gray-100 hover:bg-gray-200 text-blue-800 font-semibold py-2 px-6 rounded shadow border"
+        >
+          Registrarse
+        </button>
+      </div>
+    </div>
   );
 }
