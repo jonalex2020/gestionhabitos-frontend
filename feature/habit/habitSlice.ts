@@ -13,9 +13,7 @@ export interface Habit {
 }
 
 export const fetchHabitsThunk = createAsyncThunk("habits/fetchHabits", async (): Promise<Habit[]> => {
- // console.log("🟡 Ejecutando fetchHabitsThunk...");
   const response = await fetchHabits();
-  //console.log("✅ Datos obtenidos de la API:", response);
   return response;
 });
 
@@ -33,7 +31,6 @@ const habitSlice = createSlice({
       })
       .addCase(fetchHabitsThunk.fulfilled, (state, action) => {
         state.status = "succeeded";
-        //console.log("🔵 Datos almacenados en Redux:", action.payload);
         state.habits = action.payload;
       })
       .addCase(fetchHabitsThunk.rejected, (state) => {
