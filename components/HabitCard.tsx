@@ -1,10 +1,13 @@
+'use client';
 import React from 'react';
 
+type Habit = {
+  name: string;
+  daysCompleted: number;
+};
+
 type Props = {
-  habit: {
-    name: string;
-    daysCompleted: number;
-  };
+  habit: Habit;
 };
 
 const HabitCard: React.FC<Props> = ({ habit }) => {
