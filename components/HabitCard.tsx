@@ -1,4 +1,3 @@
-// components/HabitCard.tsx
 import React from 'react';
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
   };
 };
 
-const HabitCard = ({ habit }: Props) => {
+const HabitCard: React.FC<Props> = ({ habit }) => {
   const porcentaje = Math.min((habit.daysCompleted / 66) * 100, 100);
   const color =
     porcentaje < 33
