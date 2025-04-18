@@ -1,9 +1,10 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HabitCard from '../../components/HabitCard';
 
-export default function Dashboard() {
+export default function DashboardPage() {
   const [habits, setHabits] = useState([]);
   const router = useRouter();
 
@@ -15,7 +16,7 @@ export default function Dashboard() {
         if (res.status === 401) router.push('/login');
         return res.json();
       })
-      .then(setHabits)
+      .then(data => setHabits(data.habits || []))
       .catch(err => console.error('Error al obtener hábitos', err));
   }, []);
 
