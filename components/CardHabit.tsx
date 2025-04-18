@@ -10,7 +10,7 @@ type Props = {
   habit: Habit;
 };
 
-const HabitCard: React.FC<Props> = ({ habit }) => {
+const CardHabit: React.FC<Props> = ({ habit }) => {
   const porcentaje = Math.min((habit.daysCompleted / 66) * 100, 100);
   const color =
     porcentaje < 33
@@ -35,4 +35,4 @@ const HabitCard: React.FC<Props> = ({ habit }) => {
   );
 };
 
-export default HabitCard;
+export default CardHabit;

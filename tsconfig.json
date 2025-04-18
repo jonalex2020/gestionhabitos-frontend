@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",          // ✅ obligatorio
+    "jsx": "preserve",          
     "module": "esnext",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
